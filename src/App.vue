@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Pigeon from './pigeon/pigeon.vue';
+import { Pigeon } from './index'
+// import '/node_modules/Pigeon/dist/style.css'
 import { ref } from 'vue'
 </script>
 

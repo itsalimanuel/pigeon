@@ -1,27 +1,10 @@
-<script setup lang="ts">
+<script setup >
 import Close from '../components/close.vue'
 import logo from '../components/logo.vue'
-import { reactive, ref } from 'vue'
-interface Props {
-    top?: Number;
-    left?: Number;
-    bottom?: Number;
-    right?: Number;
-    Color?: String;
-    Size?: Number;
-    backgroundColor?: String;
-    title?: String;
-    description?: String;
-    closeColor?: String;
-    image?: String;
-}
-const props = withDefaults(defineProps<Props>(), {
-    top: null,
-    left: null,
-    bottom: null,
-    right: null,
+import { reactive, defineProps,ref } from 'vue'
+
+const props = defineProps( {
     Color: null,
-    Size: null,
     backgroundColor: null,
     title: null,
     description: null,
@@ -29,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
     image: null,
 
 })
-const { top, left, bottom, right, Color, Size, backgroundColor, closeColor, image } = reactive(props)
+const { Color, backgroundColor, closeColor, image } = reactive(props)
 
 const showChat = ref(false)
 const formInfo = ref({
@@ -37,7 +20,9 @@ const formInfo = ref({
     name: '',
     phone: ''
 })
-
+const alertEmail = ref(false)
+const alertName = ref(false)
+const alertPhone = ref(false)
 
 const openChat = () => {
     showChat.value = true
@@ -45,7 +30,7 @@ const openChat = () => {
 const closeChat = () => {
     showChat.value = false
 }
-const validatePhone = (evt: any) => {
+const validatePhone = (evt) => {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
     if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
@@ -55,16 +40,16 @@ const validatePhone = (evt: any) => {
     }
 }
 
-const submitForm = (evt: any) => {
+const submitForm = (_evt) => {
     if (formInfo.value.email == '') {
-        
+
     }
 }
 
 </script>
 
 <template>
-    <div class="pigeon" :class="{ top, left, bottom, right, Color, Size, backgroundColor }">
+    <div class="pigeon" :class="{ Color, backgroundColor }">
         <div class="pigeon__body" v-if="showChat">
             <div class="pigeon__body_top">
                 <div @click="closeChat" class="--close">
@@ -86,12 +71,14 @@ const submitForm = (evt: any) => {
             </div>
             <div class="pigeon__body_bottom">
                 <form>
-                    <input type="text" v-model="formInfo.email" placeholder="Email">
-                    <input type="text" v-model="formInfo.name" placeholder="Name">
-                    <input @keypress="validatePhone" v-model="formInfo.phone" placeholder="phone number">
+                    <input :class="{ 'alert': alertEmail }" type="text" v-model="formInfo.email" placeholder="Email">
+                    <input :class="{ 'alert': alertName }" type="text" v-model="formInfo.name" placeholder="Name">
+                    <input :class="{ 'alert': alertPhone }" @keypress="validatePhone" v-model="formInfo.phone"
+                        placeholder="phone number">
                     <button @click="submitForm"
                         :disabled="formInfo.email == '' || formInfo.name == '' || formInfo.phone == ''">Send</button>
                 </form>
+                <p>Made by <a href="">Ali Khalouf</a></p>
             </div>
         </div>
         <div @click="openChat" class="pigeon__chat" v-else>
@@ -108,7 +95,7 @@ const submitForm = (evt: any) => {
 </template>
 
 
-<style lang="sass">
+<style lang="sass" scoped>
 .pigeon
     position: fixed
     bottom: 20px
@@ -172,7 +159,6 @@ const submitForm = (evt: any) => {
                 display: flex
                 flex-direction: column
                 padding: 20px
-                height: 100%
                 input
                     padding: 10px
                     margin-bottom: 5px
@@ -185,6 +171,10 @@ const submitForm = (evt: any) => {
                     background-color: #FECC00
                     border: none
                     border: 5px
+            p
+                font-size: 12px
+                color: #000
+                text-align: center
     &__chat
         position: relative
         display: flex

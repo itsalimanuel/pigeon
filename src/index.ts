@@ -1,0 +1,1 @@
+export {default as Pigeon} from './pigeon/pigeon.vue'
