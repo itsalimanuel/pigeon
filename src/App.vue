@@ -1,7 +1,8 @@
-<script setup lang="ts">
-import { Pigeon } from './index'
+<script setup>
+// import { Pigeon } from 'Pigeon'
 // import '/node_modules/Pigeon/dist/style.css'
 import { ref } from 'vue'
+
 </script>
 
 <template>
@@ -12,7 +13,7 @@ import { ref } from 'vue'
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
-    <Pigeon closeColor="#FECC00"  :top="20">
+    <Pigeon @click="submit" closeColor="#FECC00">
       <template #title>
         Support
       </template>

@@ -1,7 +1,6 @@
 {
-  "name": "pigeon",
-  "private": true,
-  "version": "0.0.2-beta",
+  "name": "pigeon-chat",
+  "version": "0.0.2",
   "type": "module",
   "files": [
     "dist"
@@ -14,16 +13,18 @@
       "require": "./dist/pigeon.umd.js"
     }
   },
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "build:lb": "vite build && vue-tsc --emitDeclarationOnly && mv dist/src dist/types"
+    "build:lb": "vite build && vue-tsc --emitDeclarationOnly && mv dist/src dist/types",
+    "lint": "tsc -p tsconfig.json --noEmit && eslint \"**/*.{ts,tsx}\" --quiet --fix"
   },
   "dependencies": {
+    "pigeon-chat": "pigeon-chat-0.0.2.tgz",
     "sass": "^1.58.3",
-    "vue": "^3.2.45",
-    "Pigeon": "Pigeon-0.0.2-beta.tgz"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@types/node": "^18.14.0",
@@ -31,5 +32,24 @@
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
     "vue-tsc": "^1.0.24"
-  }
+  },
+  "description": "This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsalimanuel/pigeon.git"
+  },
+  "keywords": [
+    "livechat",
+    "chat",
+    "contact",
+    "vite",
+    "vue",
+    "nuxt"
+  ],
+  "author": "Ali Khalouf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsalimanuel/pigeon/issues"
+  },
+  "homepage": "https://github.com/itsalimanuel/pigeon#readme"
 }

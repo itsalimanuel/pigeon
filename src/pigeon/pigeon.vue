@@ -1,99 +1,114 @@
-<script setup >
-import Close from '../components/close.vue'
-import logo from '../components/logo.vue'
-import { reactive, defineProps,ref } from 'vue'
+<script setup>
+import Close from "../components/close.vue";
+import logo from "../components/logo.vue";
+import { reactive, defineProps, ref } from "vue";
+const props = defineProps({
+  color: null,
+  backgroundColor: null,
+  title: null,
+  description: null,
+  myEmail: null,
+  closeColor: "#000000",
+  image: null,
+});
+const { color, backgroundColor, closeColor, image } = reactive(props);
 
-const props = defineProps( {
-    Color: null,
-    backgroundColor: null,
-    title: null,
-    description: null,
-    closeColor: '#000000',
-    image: null,
-
-})
-const { Color, backgroundColor, closeColor, image } = reactive(props)
-
-const showChat = ref(false)
+const showChat = ref(false);
 const formInfo = ref({
-    email: '',
-    name: '',
-    phone: ''
-})
-const alertEmail = ref(false)
-const alertName = ref(false)
-const alertPhone = ref(false)
+  email: "",
+  name: "",
+  phone: "",
+});
+const alertEmail = ref(false);
+const alertName = ref(false);
+const alertPhone = ref(false);
 
 const openChat = () => {
-    showChat.value = true
-}
+  showChat.value = true;
+};
 const closeChat = () => {
-    showChat.value = false
-}
+  showChat.value = false;
+};
 const validatePhone = (evt) => {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-        evt.preventDefault();;
-    } else {
-        return true;
-    }
-}
+  evt = evt ? evt : window.event;
+  var charCode = evt.which ? evt.which : evt.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+    evt.preventDefault();
+  } else {
+    return true;
+  }
+};
 
-const submitForm = (_evt) => {
-    if (formInfo.value.email == '') {
-
-    }
-}
-
+const submitForm = () => {
+  alert("pigeonSendForm");
+};
 </script>
 
 <template>
-    <div class="pigeon" :class="{ Color, backgroundColor }">
-        <div class="pigeon__body" v-if="showChat">
-            <div class="pigeon__body_top">
-                <div @click="closeChat" class="--close">
-                    <Close :color="closeColor" />
-                </div>
-                <div class="pigeon__body_top_content">
-                    <div class="__image">
-                        <img v-if="image" :src="image" alt="">
-                        <logo v-else />
-                    </div>
-                    <div class="__info">
-                        <span>
-                            {{ title ? title : 'Company name' }}
-                        </span>
-                        <p>{{ description ? description : 'Description about your company' }}</p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="pigeon__body_bottom">
-                <form>
-                    <input :class="{ 'alert': alertEmail }" type="text" v-model="formInfo.email" placeholder="Email">
-                    <input :class="{ 'alert': alertName }" type="text" v-model="formInfo.name" placeholder="Name">
-                    <input :class="{ 'alert': alertPhone }" @keypress="validatePhone" v-model="formInfo.phone"
-                        placeholder="phone number">
-                    <button @click="submitForm"
-                        :disabled="formInfo.email == '' || formInfo.name == '' || formInfo.phone == ''">Send</button>
-                </form>
-                <p>Made by <a href="">Ali Khalouf</a></p>
-            </div>
+  <div class="pigeon">
+    <div class="pigeon__body" v-if="showChat">
+      <div
+        class="pigeon__body_top"
+        :style="{ backgroundColor: backgroundColor }"
+      >
+        <div @click="closeChat" class="--close">
+          <Close :color="closeColor" />
         </div>
-        <div @click="openChat" class="pigeon__chat" v-else>
-            <button class="pigeon__chat_button">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <span class="pigeon__chat_title">
-                <slot name="title" />
+        <div class="pigeon__body_top_content">
+          <div class="__image">
+            <img v-if="image" :src="image" alt="" />
+            <logo v-else />
+          </div>
+          <div :style="{ color: color }" class="__info">
+            <span>
+              {{ title ? title : "Company name" }}
             </span>
+            <p>
+              {{ description ? description : "Description about your company" }}
+            </p>
+          </div>
         </div>
+      </div>
+      <div class="pigeon__body_bottom">
+        <form>
+          <input
+            :class="{ alert: alertEmail }"
+            type="text"
+            v-model="formInfo.email"
+            placeholder="Email"
+            required
+          />
+          <input
+            :class="{ alert: alertName }"
+            type="text"
+            v-model="formInfo.name"
+            placeholder="Name"
+            required
+          />
+          <input
+            :class="{ alert: alertPhone }"
+            @keypress="validatePhone"
+            v-model="formInfo.phone"
+            placeholder="phone number"
+            required
+          />
+          <button @click="submitForm">Send</button>
+        </form>
+        <p>Pigeon on <a href="">Github</a></p>
+      </div>
     </div>
+    <div @click="openChat" class="pigeon__chat" v-else>
+      <button class="pigeon__chat_button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <span class="pigeon__chat_title">
+        <slot name="title" />
+      </span>
+    </div>
+  </div>
 </template>
-
 
 <style lang="sass" scoped>
 .pigeon
@@ -154,15 +169,18 @@ const submitForm = (_evt) => {
         &_bottom
             width: 100%
             height: 100%
-            
+
             form
                 display: flex
                 flex-direction: column
                 padding: 20px
                 input
                     padding: 10px
+                    background: #fff
                     margin-bottom: 5px
+                    border-radius: 5px
                     border: none
+                    color: #000
                     font-size: 12px
                 button
                     margin-top: 10px
@@ -170,7 +188,7 @@ const submitForm = (_evt) => {
                     cursor: pointer
                     background-color: #FECC00
                     border: none
-                    border: 5px
+                    border-radius: 5px
             p
                 font-size: 12px
                 color: #000
@@ -208,5 +226,4 @@ const submitForm = (_evt) => {
                 color: #fff
                 font-size: 16px
                 font-weight: bold
-
 </style>
