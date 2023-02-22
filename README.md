@@ -15,3 +15,8 @@ In addition to the chat component, Pigeon also offers contact components such as
 Pigeon is built with accessibility in mind, ensuring that all website visitors can use its components. It also offers easy integration with third-party tools such as chatbots and analytics software, making it a powerful addition to any website.
 
 Overall, Pigeon is a versatile and user-friendly Vue component library that can help website owners improve their customer support and contact experience.
+
+
+
+<h1>Support</h1>
+https://ko-fi.com/itsalimanuel
