@@ -1,6 +1,6 @@
 {
-  "name": "pigeon-chat",
-  "version": "0.0.2",
+  "name": "pigeon-live",
+  "version": "0.0.5",
   "type": "module",
   "files": [
     "dist"
@@ -18,11 +18,10 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "build:lb": "vite build && vue-tsc --emitDeclarationOnly && mv dist/src dist/types",
-    "lint": "tsc -p tsconfig.json --noEmit && eslint \"**/*.{ts,tsx}\" --quiet --fix"
+    "build:lb": "vite build && vue-tsc --emitDeclarationOnly && move dist/src dist/types"
   },
   "dependencies": {
-    "pigeon-chat": "pigeon-chat-0.0.2.tgz",
+    "pigeon-live": "^0.0.5",
     "sass": "^1.58.3",
     "vue": "^3.2.45"
   },
