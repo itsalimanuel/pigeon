@@ -12,6 +12,10 @@ import {Pigeon} from 'pigeon-live'
 import '../node_modules/pigeon-live/dist/style.css'
 ```
 
+
+[Demo](https://pigeon-package.vercel.app/)
+
+
 Pigeon is a Vue component library designed to help website owners easily add chat/live support and contact information to their website. With a sleek and modern design, Pigeon offers a variety of customizable components that can be easily integrated into any Vue.js project.
 
 Pigeon's chat component allows website visitors to start a conversation with a customer support agent in real-time. The chat widget is highly customizable and can be styled to match the look and feel of your website. Pigeon's chat component also comes with features such as typing indicators, file attachments, and message history, allowing for a seamless conversation experience.
