@@ -6,10 +6,10 @@
 ```bash
 npm i pigeon-live
 ```
-usage: go to main.js/ts and import 
+usage: go to your App.vue and import 
 ```bash
-import {pigeon} from 'pigeon-live'
-import 'pigeon-live/dist/style.css
+import {Pigeon} from 'pigeon-live'
+import '../node_modules/pigeon-live/dist/style.css'
 ```
 
 Pigeon is a Vue component library designed to help website owners easily add chat/live support and contact information to their website. With a sleek and modern design, Pigeon offers a variety of customizable components that can be easily integrated into any Vue.js project.
