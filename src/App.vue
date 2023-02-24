@@ -1,6 +1,6 @@
 <script setup>
-// import { Pigeon } from 'Pigeon'
-// import '/node_modules/Pigeon/dist/style.css'
+import { Pigeon } from 'pigeon-live'
+import '/node_modules/pigeon-live/dist/style.css'
 import { ref } from 'vue'
 
 </script>
